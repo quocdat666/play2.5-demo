@@ -1,0 +1,33 @@
+@(searchForm: Form[AdminEntity], adminList: io.ebean.PagedList[AdminEntity], filter: String)
+
+@cssPaths = {
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/font-awesome/css/font-awesome.min.css")">
+}
+
+@jsPaths = {
+    <script type="text/javascript" src='@routes.ApplicationController.javascriptRoutes'></script>
+    <script type="text/javascript" src='@routes.Assets.at("javascripts/admin.js")'></script>
+}
+
+@main("Orion - Admin list")(cssPaths, jsPaths){
+    <table width="98%" align="center">
+        <tbody>
+            <tr>
+                <td>
+                @helper.form(routes.ApplicationController.searchAdminList()) {
+                    @views.html.admin.search_panel(searchForm)
+                }
+                </td>
+            </tr>
+            <tr>
+                <td align="center" height="50px"><button id="createNewAdmin">@Messages("admin.list.011")</button></td>
+            </tr>
+            <tr>
+                <td id = "list-detail">@views.html.admin.list_panel(adminList, filter)</td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+
+

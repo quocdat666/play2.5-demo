@@ -1,0 +1,12 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Default path will just redirect to the computer list
+GET    /searchAdminList                        controllers.ApplicationController.searchAdminList
+GET    /doAjaxRequestAdminList                 controllers.ApplicationController.doAjaxRequestAdminList
+
+GET    /javascriptRoutes                       controllers.ApplicationController.javascriptRoutes
+
+# Map static resources from the /public folder to the /assets URL path
+GET    /assets/*file                           controllers.Assets.at(path="/public", file)

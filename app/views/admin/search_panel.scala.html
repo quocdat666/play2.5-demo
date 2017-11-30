@@ -1,0 +1,77 @@
+@(searchForm: Form[AdminEntity])
+
+@getValue(fieldName: String) = {
+@if(searchForm(fieldName).value() != null) {
+@searchForm(fieldName).value()
+}
+}
+
+@isSelected(fieldName: String, value: String) = {
+@if(searchForm(fieldName).value != null && searchForm(fieldName).value == value) {
+    selected
+}
+}
+
+<div id="search_content" class="modal-content">
+    <table align="center">
+        <tbody>
+            <tr>
+                <td><span>@Messages("admin.list.001")</span></td>
+                <td width="350px"><input type="text" class="input-text" name="adminId" id ="adminId" size="20" value="@getValue("adminId")"></td>
+                <td>@Messages("admin.list.006")</td>
+                <td>
+                    <select class="input-text" id="activeStatus" name="activeStatus">
+                        <option class="blank" value="">All</option>
+                        <option value="1" @isSelected("activeStatus", "1")>Enable</option>
+                        <option value="2" @isSelected("activeStatus", "2")>Disable</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Messages("admin.list.002")</td>
+                <td>
+                    <select class="input-text" id="adminType" name="adminType">
+                        <option class="blank" value="">All</option>
+                        <option value="1" @isSelected("adminType", "1")>Item 01</option>
+                        <option value="2" @isSelected("adminType", "2")>Item 02</option>
+                        <option value="3" @isSelected("adminType", "3")>Item 03</option>
+                    </select>
+                </td>
+                <td>@Messages("admin.list.007")</td>
+
+                <td>
+                    <select class="input-text" id="branch" name="branch">
+                        <option class="blank" value="">All</option>
+                        <option value="1" @isSelected("branch", "1")>Item 01</option>
+                        <option value="2" @isSelected("branch", "2")>Item 02</option>
+                        <option value="3" @isSelected("branch", "3")>Item 03</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>@Messages("admin.list.003")</td>
+                <td><input type="text" class="input-text" id="companyName" name="companyName" size="25" value="@getValue("companyName")"></td>
+                <td>@Messages("admin.list.008")</td>
+                <td><input type="text" class="input-text" id="username" name="username" size="25" value="@getValue("username")"></td>
+            </tr>
+            <tr>
+                <td>@Messages("admin.list.004")</td>
+                <td><input type="text" class="input-text" id="name" name="name" size="25" value="@getValue("name")"></td>
+                <td>@Messages("admin.list.009")</td>
+                <td><input type="text" class="input-text" id="nameKana" name="nameKana" size="25" value="@getValue("nameKana")"></td>
+            </tr>
+            <tr>
+                <td>@Messages("admin.list.005")</td>
+                <td><input type="text" class="input-text" id="email" name="email" size="25" value="@getValue("email")"></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center" height="50px">
+                    <input type="submit" value="@Messages("admin.list.010")">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
