@@ -6,6 +6,10 @@
 GET    /searchAdminList                        controllers.ApplicationController.searchAdminList
 GET    /doAjaxRequestAdminList                 controllers.ApplicationController.doAjaxRequestAdminList
 
+GET    /editPrinter                            controllers.PatternController.editPrinter
+GET    /detonatePrinter                        controllers.PatternController.detonatePrinter
+GET    /editAnythingRegex                      controllers.PatternController.editPrinterRegex
+
 GET    /javascriptRoutes                       controllers.ApplicationController.javascriptRoutes
 
 # Map static resources from the /public folder to the /assets URL path

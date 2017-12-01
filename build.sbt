@@ -18,8 +18,7 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.3.7-1" exclude("org.webjars", "jquery"),
   "org.webjars" % "jquery" % "3.2.1",
   "org.webjars" % "font-awesome" % "4.7.0",
-  //"be.objectify" %% "deadbolt-java" % "2.6.1",
-  //"be.objectify" %% "deadbolt-java-gs" % "2.6.0"
+  "be.objectify" %% "deadbolt-java" % "2.5.6",
   "commons-beanutils" % "commons-beanutils" % "1.9.3"
 )
 

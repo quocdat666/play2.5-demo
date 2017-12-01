@@ -1,22 +1,21 @@
 @(title: String)
 
-@@import be.objectify.deadbolt.java.views.html.pattern
-@@import be.objectify.deadbolt.java.views.html.patternOr
+@import be.objectify.deadbolt.java.views.html.pattern
+@import be.objectify.deadbolt.java.views.html.patternOr
 
 <html>
-<head>
-    <title>@title</title>
-</head>
-<body>
-@@pattern(value = "printers.edit") {
-<h3>Access OK! Welcome to the FRAMGIA !</h3>
-}
+    <head>
+        <title>@title</title>
+    </head>
+    <body>
+        @pattern(value = "printers.edit") {
+            <h3>Access OK! Welcome to the FRAMGIA !</h3>
+        }
 
-@@patternOr(value = "printers.hehe") {
-<h3>HEHE</h3>
-} {
-123456
-}
-</body>
+        @patternOr(value = "printers.hehe") {
+            <h3>HEHE</h3>
+        } {
+            123456
+        }
+    </body>
 </html>
-
