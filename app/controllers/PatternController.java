@@ -16,6 +16,7 @@
 package controllers;
 
 import be.objectify.deadbolt.java.actions.Pattern;
+import be.objectify.deadbolt.java.actions.SubjectPresent;
 import be.objectify.deadbolt.java.models.PatternType;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -28,6 +29,7 @@ import java.util.concurrent.CompletionStage;
  * @author Steve Chaloner (steve@objectify.be)
  */
 
+@SubjectPresent
 public class PatternController extends Controller {
 
     @Pattern("printers.edit")

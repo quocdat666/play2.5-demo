@@ -19,7 +19,7 @@ import be.objectify.deadbolt.java.AbstractDeadboltHandler;
 import be.objectify.deadbolt.java.DynamicResourceHandler;
 import be.objectify.deadbolt.java.ExecutionContextProvider;
 import be.objectify.deadbolt.java.models.Subject;
-import models.AuthorisedUser;
+import models.AdminEntity;
 import play.mvc.Http;
 import play.mvc.Result;
 import views.html.accessFailed;
@@ -50,12 +50,12 @@ public class MyDeadboltHandler extends AbstractDeadboltHandler {
 
         // in a real application, the user name would probably be in the session following a login process
         return CompletableFuture.supplyAsync(
-                () -> Optional.ofNullable(AuthorisedUser.findByUserName(context.session().get("username"))),
+                () -> Optional.ofNullable(AdminEntity.findByUserName(context.session().get("username"))),
                 (Executor) executionContextProvider.get());
     }
 
     public CompletionStage<Optional<DynamicResourceHandler>> getDynamicResourceHandler(final Http.Context context) {
-        return CompletableFuture.completedFuture(Optional.of(new MyDynamicResourceHandler()));
+        return CompletableFuture.completedFuture(Optional.empty());
     }
 
     @Override

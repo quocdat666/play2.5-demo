@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Steve Chaloner (steve@objectify.be)
@@ -17,7 +18,7 @@ import java.util.Map;
 public class MyHandlerCache implements HandlerCache {
 
     private final DeadboltHandler defaultHandler;
-    private final Map<String, DeadboltHandler> handlers = new HashMap<>();
+    private final Map<String, DeadboltHandler> handlers = new ConcurrentHashMap<>();
 
     @Inject
     public MyHandlerCache(final ExecutionContextProvider ecProvider) {

@@ -16,28 +16,10 @@ create table admin_entity (
   constraint pk_admin_entity primary key (admin_id)
 );
 
-create table authorised_user (
-  id                            bigint auto_increment not null,
-  user_name                     varchar(255),
-  constraint pk_authorised_user primary key (id)
-);
-
-create table authorised_user_security_role (
-  authorised_user_id            bigint not null,
-  security_role_id              bigint not null,
-  constraint pk_authorised_user_security_role primary key (authorised_user_id,security_role_id)
-);
-
-create table authorised_user_user_permission (
-  authorised_user_id            bigint not null,
+create table admin_entity_user_permission (
+  admin_entity_admin_id         varchar(255) not null,
   user_permission_id            bigint not null,
-  constraint pk_authorised_user_user_permission primary key (authorised_user_id,user_permission_id)
-);
-
-create table security_role (
-  id                            bigint auto_increment not null,
-  name                          varchar(255),
-  constraint pk_security_role primary key (id)
+  constraint pk_admin_entity_user_permission primary key (admin_entity_admin_id,user_permission_id)
 );
 
 create table user_permission (
@@ -46,42 +28,24 @@ create table user_permission (
   constraint pk_user_permission primary key (id)
 );
 
-alter table authorised_user_security_role add constraint fk_authorised_user_security_role_authorised_user foreign key (authorised_user_id) references authorised_user (id) on delete restrict on update restrict;
-create index ix_authorised_user_security_role_authorised_user on authorised_user_security_role (authorised_user_id);
+alter table admin_entity_user_permission add constraint fk_admin_entity_user_permission_admin_entity foreign key (admin_entity_admin_id) references admin_entity (admin_id) on delete restrict on update restrict;
+create index ix_admin_entity_user_permission_admin_entity on admin_entity_user_permission (admin_entity_admin_id);
 
-alter table authorised_user_security_role add constraint fk_authorised_user_security_role_security_role foreign key (security_role_id) references security_role (id) on delete restrict on update restrict;
-create index ix_authorised_user_security_role_security_role on authorised_user_security_role (security_role_id);
-
-alter table authorised_user_user_permission add constraint fk_authorised_user_user_permission_authorised_user foreign key (authorised_user_id) references authorised_user (id) on delete restrict on update restrict;
-create index ix_authorised_user_user_permission_authorised_user on authorised_user_user_permission (authorised_user_id);
-
-alter table authorised_user_user_permission add constraint fk_authorised_user_user_permission_user_permission foreign key (user_permission_id) references user_permission (id) on delete restrict on update restrict;
-create index ix_authorised_user_user_permission_user_permission on authorised_user_user_permission (user_permission_id);
+alter table admin_entity_user_permission add constraint fk_admin_entity_user_permission_user_permission foreign key (user_permission_id) references user_permission (id) on delete restrict on update restrict;
+create index ix_admin_entity_user_permission_user_permission on admin_entity_user_permission (user_permission_id);
 
 
 # --- !Downs
 
-alter table authorised_user_security_role drop foreign key fk_authorised_user_security_role_authorised_user;
-drop index ix_authorised_user_security_role_authorised_user on authorised_user_security_role;
+alter table admin_entity_user_permission drop foreign key fk_admin_entity_user_permission_admin_entity;
+drop index ix_admin_entity_user_permission_admin_entity on admin_entity_user_permission;
 
-alter table authorised_user_security_role drop foreign key fk_authorised_user_security_role_security_role;
-drop index ix_authorised_user_security_role_security_role on authorised_user_security_role;
-
-alter table authorised_user_user_permission drop foreign key fk_authorised_user_user_permission_authorised_user;
-drop index ix_authorised_user_user_permission_authorised_user on authorised_user_user_permission;
-
-alter table authorised_user_user_permission drop foreign key fk_authorised_user_user_permission_user_permission;
-drop index ix_authorised_user_user_permission_user_permission on authorised_user_user_permission;
+alter table admin_entity_user_permission drop foreign key fk_admin_entity_user_permission_user_permission;
+drop index ix_admin_entity_user_permission_user_permission on admin_entity_user_permission;
 
 drop table if exists admin_entity;
 
-drop table if exists authorised_user;
-
-drop table if exists authorised_user_security_role;
-
-drop table if exists authorised_user_user_permission;
-
-drop table if exists security_role;
+drop table if exists admin_entity_user_permission;
 
 drop table if exists user_permission;
 
