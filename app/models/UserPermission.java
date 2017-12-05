@@ -34,16 +34,8 @@ public class UserPermission extends Model implements Permission {
     @Column(name = "permission_value")
     public String value;
 
-    public static final Finder<Long, UserPermission> find = new Finder(UserPermission.class);
-
     public String getValue() {
         return value;
     }
 
-    public static UserPermission findByValue(String value) {
-        return find.query().where()
-                .eq("value",
-                        value)
-                .findUnique();
-    }
 }
